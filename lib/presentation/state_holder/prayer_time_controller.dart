@@ -24,10 +24,6 @@ class PrayerTimeController extends GetxController {
     if (response.isSuccess) {
       _prayerTime = PrayerTime.fromJson(response.responseJson ?? {});
       update();
-      /*  print("title print");
-        print(_prayerTime.data?.map((e) => e.product?.title?? 'not found').toString());
-        print("print productId");
-        print(_wishListModel.data?.map((e) => e.productId).toString()); */
       return true;
     } else {
       _errorMessage = "Wish list data fetch failed! tray again";
