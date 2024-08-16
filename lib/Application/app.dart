@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_1_api_data_fetch/Application/state_holder_binder.dart';
 import 'package:task_1_api_data_fetch/presentation/ui/screen/home_screen.dart';
 class PrayerTimeApp extends StatelessWidget {
   const PrayerTimeApp({super.key});
@@ -7,7 +8,8 @@ class PrayerTimeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Api Data Fetch',
+      initialBinding: StateHolderBinder(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           centerTitle: true,
