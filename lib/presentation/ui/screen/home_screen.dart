@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List prayerList = [
     [
-      Image.asset(ImageAssets.fajarSun),
+      Image.asset(ImageAssets.morningMoon),
       "Fajar",
     ],
     [

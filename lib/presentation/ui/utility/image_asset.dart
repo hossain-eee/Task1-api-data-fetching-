@@ -9,5 +9,6 @@ class ImageAssets {
   static const String sunRising = "$_imagePath/sunrising.jpg";
   static const String fajarSun = "$_imagePath/fajar_sun.PNG";
   static const String sunSet = "$_imagePath/sunset.PNG";
+  static const String morningMoon = "$_imagePath/morning_moon.png";
 
 }
