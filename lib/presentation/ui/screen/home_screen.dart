@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:task_1_api_data_fetch/presentation/state_holder/prayer_time_controller.dart';
 import 'package:task_1_api_data_fetch/presentation/ui/widgets/curve_image.dart';
 import 'package:task_1_api_data_fetch/presentation/ui/utility/image_asset.dart';
+import 'package:task_1_api_data_fetch/presentation/ui/widgets/paryer_name.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,16 +21,75 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  List prayerList = [
+    [
+      Image.asset(ImageAssets.fajarSun),
+      "Fajar",
+    ],
+    [
+      Image.asset(ImageAssets.sunRising),
+      "Sunrise",
+    ],
+    [
+      Image.asset(ImageAssets.sunImage),
+      "Dhuhr",
+    ],
+    [
+      Image.asset(ImageAssets.sunImage),
+      "Asr",
+    ],
+    [
+      Image.asset(ImageAssets.sunSet),
+      "Sunset",
+    ],
+    [
+      Image.asset(ImageAssets.moonImage),
+      "Maghrib",
+    ],
+    [
+      Image.asset(ImageAssets.moonImage),
+      "Isha",
+    ],
+  ];
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.grey,
-      body: Stack(
+      body: Column(
         children: [
-          SizedBox(
-            width: double.infinity,
-            height: 300,
-            child: CurvedImageBottom(),
+          const Stack(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 300,
+                child: CurvedImageBottom(),
+              ),
+              Positioned(
+                left: 40,
+                right: 0,
+                top: 50,
+                child: Text(
+                  "PrayerTime",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: prayerList.length,
+              itemBuilder: (context, index) {
+                return PrayerName(
+                  prayerList: prayerList[index],
+                );
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 10,
           ),
         ],
       ),
