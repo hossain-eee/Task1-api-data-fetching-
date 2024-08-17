@@ -30,11 +30,15 @@ class SalatTime extends StatelessWidget {
         };
         //error message (if data is not fetch)
         if (controller.errorMessage.isNotEmpty)
-          return Center(
-              child: Text(
-            controller.errorMessage,
-            style: TextStyle(color: Colors.red, fontSize: 20),
-          ));
+          return SizedBox(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height*0.9,
+            child: Center(
+                child: Text(
+              controller.errorMessage,
+              style: TextStyle(color: Colors.red, fontSize: 20),
+            )),
+          );
         //data is loading
         return SizedBox(
           height: MediaQuery.of(context).size.height * 0.85,
@@ -59,75 +63,26 @@ class SalatTime extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       // Date
-                      Expanded(
-                        flex: 11,
-                        child: ListTile(
-                          title: FittedBox(
-                            child: Text(
-                              apiData.date?.gregorian?.date ?? 'No Date',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.04,
-                              ),
-                            ),
-                          ),
-                          subtitle: FittedBox(
-                            child: Text(
-                              apiData.date?.hijri?.date ?? 'No Date',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.04,
-                              ),
-                            ),
-                          ),
-                        ),
+                      salatText(
+                        context,
+                        apiData.date?.gregorian?.date ?? 'No Date',
+                        apiData.date?.hijri?.date ?? 'No Date',
                       ),
+                  
                       // Day
-                      Expanded(
-                        flex: 10,
-                        child: ListTile(
-                          title: Text(
-                            "${apiData.date?.gregorian?.weekday?.en ?? 'No Weekday'}",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.04,
-                            ),
-                          ),
-                          subtitle: Text(
-                            "${apiData.date?.hijri?.weekday?.ar ?? 'No Weekday'}",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.05,
-                            ),
-                          ),
-                        ),
+                      salatText(
+                        context,
+                        apiData.date?.gregorian?.weekday?.en ?? 'No Weekday',
+                        apiData.date?.hijri?.weekday?.ar ?? 'No Weekday',
                       ),
+                     
                       // Prayer Time
-                      Expanded(
-                        flex: 10,
-                        child: ListTile(
-                          title: Text(
-                            salatName,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.04,
-                            ),
-                          ),
-                          subtitle: Text(
-                            timingValue!,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.04,
-                            ),
-                          ),
-                        ),
-                      ),
+                      salatText(
+                        context,
+                        salatName,
+                        timingValue!,
+                      ), 
+                
                     ],
                   ),
                 ),
@@ -136,6 +91,30 @@ class SalatTime extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+
+  Widget salatText(BuildContext context, String text1, String text2) {
+    return Column(
+      children: [
+        Text(
+          text1,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: MediaQuery.of(context).size.width * 0.04,
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          text2,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: MediaQuery.of(context).size.width * 0.04,
+          ),
+        ),
+      ],
     );
   }
 }
