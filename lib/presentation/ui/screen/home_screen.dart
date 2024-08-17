@@ -79,24 +79,36 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: prayerList.length,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  splashColor: Colors.grey,
-                  onTap: () {
-                    Get.to(() => PrayerTimeScreen(
-                          salatName: prayerList[index][1],
-                        ));
+          GetBuilder<PrayerTimeController>(builder: (controller) {
+            if (controller.getDataInProgress) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  controller.getApiData();
+                },
+                child: ListView.builder(
+                  itemCount: prayerList.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      splashColor: Colors.grey,
+                      onTap: () {
+                        Get.to(() => PrayerTimeScreen(
+                              salatName: prayerList[index][1],
+                            ));
+                      },
+                      child: PrayerName(
+                        prayerList: prayerList[index],
+                      ),
+                    );
                   },
-                  child: PrayerName(
-                    prayerList: prayerList[index],
-                  ),
-                );
-              },
-            ),
-          ),
+                ),
+              ),
+            );
+          }),
           const SizedBox(
             height: 10,
           ),
