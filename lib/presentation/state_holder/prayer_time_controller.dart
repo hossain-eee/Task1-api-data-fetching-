@@ -26,7 +26,7 @@ class PrayerTimeController extends GetxController {
       update();
       return true;
     } else {
-      _errorMessage = "Wish list data fetch failed! tray again";
+      _errorMessage = "data can't fetch";
       update();
       return false;
     }

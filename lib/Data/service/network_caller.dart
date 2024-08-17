@@ -15,8 +15,7 @@ class NetworkCaller {
       http.Response response = await http.get(Uri.parse(url));
       log(response.statusCode.toString());
       log(response.body);
-      if (response.statusCode == 200 &&
-          jsonDecode(response.body)['status'] == 'OK') {
+      if (response.statusCode == 200 ) {
         return NetworkResponse(
             true, response.statusCode, jsonDecode(response.body));
       } else if (response.statusCode == 401) {
